@@ -1,36 +1,166 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 會員推薦系統 - 三級分潤制度
 
-## Getting Started
+這是一個基於 Next.js 和 Supabase 的多層次行銷（MLM）系統，實現三級推薦分潤機制。
 
-First, run the development server:
+## 🎯 功能特色
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+### 前台功能
+- ✅ 會員註冊（可選擇推薦人）
+- ✅ 會員列表與查詢
+- ✅ 個人儀表板
+  - 查看總分潤收入
+  - 查看所有分潤紀錄
+  - 查看三代下線名單
+- ✅ 自動計算三級分潤
+
+### 後台功能
+- ✅ 系統統計資訊
+  - 總會員數
+  - 總分潤金額
+  - 今日新增會員
+  - 今日分潤
+- ✅ 會員管理
+- ✅ 分潤紀錄查詢
+
+## 💰 分潤制度
+
+- **第一代（直接下線）**: NT$ 150
+- **第二代**: NT$ 100
+- **第三代**: NT$ 50
+
+當新會員註冊時，系統會自動追溯三代上線並建立分潤紀錄。
+
+## 🗄️ 資料庫結構
+
+### 1. users（會員主表）
+```sql
+- id: 使用者ID（主鍵）
+- name: 會員名稱（唯一）
+- referrer_id: 推薦人ID（外鍵）
+- created_at: 建立時間
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. commissions（分潤紀錄表）
+```sql
+- id: 紀錄ID（主鍵）
+- user_id: 收入者ID（外鍵）
+- source_id: 觸發事件的下線ID（外鍵）
+- level: 第幾代 (1, 2, 3)
+- amount: 分潤金額
+- created_at: 建立時間
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 3. commission_rules（分潤設定表）
+```sql
+- id: 規則ID（主鍵）
+- level: 代數
+- amount: 該代金額
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🚀 安裝與設定
 
-## Learn More
+### 1. 安裝相依套件
+```bash
+npm install
+```
 
-To learn more about Next.js, take a look at the following resources:
+### 2. 設定 Supabase
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+已經設定好 Supabase 連線：
+- URL: https://tpkkwojypyuzsujizvqp.supabase.co
+- 環境變數已設定於 `.env.local`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 3. 建立資料庫表格
 
-## Deploy on Vercel
+請至 Supabase SQL Editor 執行 `database/schema.sql` 的內容：
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. 登入 Supabase Dashboard
+2. 進入 SQL Editor
+3. 複製並執行 `database/schema.sql` 的所有 SQL 指令
+4. 確認三個表格都已建立成功
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### 4. 啟動開發伺服器
+```bash
+npm run dev
+```
+
+應用程式將在 http://localhost:3000 啟動
+
+## 📁 專案結構
+
+```
+├── app/
+│   ├── page.tsx                    # 首頁（會員註冊）
+│   ├── dashboard/[id]/page.tsx     # 會員儀表板
+│   ├── admin/page.tsx              # 後台管理
+│   └── api/
+│       ├── users/
+│       │   ├── route.ts            # 取得/建立會員
+│       │   └── [id]/
+│       │       ├── route.ts        # 取得會員詳情
+│       │       ├── commissions/route.ts  # 取得會員分潤
+│       │       └── downline/route.ts     # 取得會員下線
+│       └── admin/
+│           ├── stats/route.ts      # 取得統計資訊
+│           └── commissions/route.ts # 取得所有分潤
+├── lib/
+│   ├── db.ts                       # Supabase 客戶端設定
+│   └── types.ts                    # TypeScript 型別定義
+└── database/
+    └── schema.sql                  # 資料庫結構
+```
+
+## 🎨 使用技術
+
+- **前端框架**: Next.js 16 (App Router)
+- **樣式**: Tailwind CSS 4
+- **資料庫**: Supabase (PostgreSQL)
+- **語言**: TypeScript
+- **狀態管理**: React Hooks
+
+## 📖 API 路由
+
+### 會員相關
+- `GET /api/users` - 取得所有會員
+- `POST /api/users` - 註冊新會員（自動計算分潤）
+- `GET /api/users/[id]` - 取得特定會員資訊
+- `GET /api/users/[id]/commissions` - 取得會員分潤紀錄
+- `GET /api/users/[id]/downline` - 取得會員三代下線
+
+### 管理相關
+- `GET /api/admin/stats` - 取得系統統計
+- `GET /api/admin/commissions` - 取得所有分潤紀錄
+
+## 🔐 注意事項
+
+1. 目前未實作身份驗證，實際應用需加入登入機制
+2. 後台管理應加入權限控制
+3. 建議在 Supabase 設定 Row Level Security (RLS)
+4. 環境變數 `.env.local` 已包含實際金鑰，生產環境應使用環境變數
+
+## 🛠️ 開發指令
+
+```bash
+# 開發模式
+npm run dev
+
+# 建置生產版本
+npm run build
+
+# 啟動生產伺服器
+npm start
+
+# 程式碼檢查
+npm run lint
+```
+
+## 📝 待辦事項
+
+- [ ] 實作會員登入/註冊系統
+- [ ] 加入管理員權限控制
+- [ ] 實作會員資料編輯功能
+- [ ] 加入分潤統計圖表
+- [ ] 匯出分潤報表（CSV/Excel）
+- [ ] 實作推薦連結生成
+- [ ] 加入 Email 通知功能
+
