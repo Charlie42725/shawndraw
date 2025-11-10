@@ -46,7 +46,7 @@ export default function Home() {
       <div className="max-w-2xl mx-auto">
         <div className="text-center mb-8 sm:mb-12">
           <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-2">
-            🎯 會員推薦系統
+            抽爆拉布布
           </h1>
           <p className="text-sm sm:text-base text-gray-600 px-2">中獎後自動分潤 - 第一代 NT$150、第二代 NT$100、第三代 NT$50</p>
         </div>
