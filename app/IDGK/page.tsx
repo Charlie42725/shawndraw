@@ -252,38 +252,38 @@ export default function AdminPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 py-12 px-4">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 py-6 sm:py-12 px-4">
       <div className="max-w-7xl mx-auto">
         {/* 頁首 */}
-        <div className="flex justify-between items-center mb-8">
-          <h1 className="text-4xl font-bold text-gray-900">🔧 後台管理系統</h1>
+        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-6 sm:mb-8">
+          <h1 className="text-2xl sm:text-4xl font-bold text-gray-900">🔧 後台管理系統</h1>
           <Link
             href="/"
-            className="px-6 py-3 bg-indigo-600 text-white rounded-lg font-semibold hover:bg-indigo-700 transition"
+            className="px-4 sm:px-6 py-2 sm:py-3 bg-indigo-600 text-white rounded-lg font-semibold hover:bg-indigo-700 transition text-center text-sm sm:text-base"
           >
             返回前台
           </Link>
         </div>
 
         {/* 統計卡片 */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-          <div className="bg-white rounded-lg shadow-lg p-6">
-            <p className="text-sm text-gray-700 font-semibold mb-2">總會員數</p>
-            <p className="text-4xl font-bold text-indigo-600">{stats?.totalUsers || 0}</p>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-6 mb-6 sm:mb-8">
+          <div className="bg-white rounded-lg shadow-lg p-3 sm:p-6">
+            <p className="text-xs sm:text-sm text-gray-700 font-semibold mb-1 sm:mb-2">總會員數</p>
+            <p className="text-2xl sm:text-4xl font-bold text-indigo-600">{stats?.totalUsers || 0}</p>
           </div>
-          <div className="bg-white rounded-lg shadow-lg p-6">
-            <p className="text-sm text-gray-700 font-semibold mb-2">總分潤金額</p>
-            <p className="text-3xl font-bold text-green-600">
+          <div className="bg-white rounded-lg shadow-lg p-3 sm:p-6">
+            <p className="text-xs sm:text-sm text-gray-700 font-semibold mb-1 sm:mb-2">總分潤金額</p>
+            <p className="text-xl sm:text-3xl font-bold text-green-600">
               NT$ {stats?.totalCommissions.toLocaleString() || 0}
             </p>
           </div>
-          <div className="bg-white rounded-lg shadow-lg p-6">
-            <p className="text-sm text-gray-700 font-semibold mb-2">中獎次數</p>
-            <p className="text-4xl font-bold text-yellow-600">{prizes.length}</p>
+          <div className="bg-white rounded-lg shadow-lg p-3 sm:p-6">
+            <p className="text-xs sm:text-sm text-gray-700 font-semibold mb-1 sm:mb-2">中獎次數</p>
+            <p className="text-2xl sm:text-4xl font-bold text-yellow-600">{prizes.length}</p>
           </div>
-          <div className="bg-white rounded-lg shadow-lg p-6">
-            <p className="text-sm text-gray-700 font-semibold mb-2">分潤紀錄數</p>
-            <p className="text-4xl font-bold text-purple-600">{commissions.length}</p>
+          <div className="bg-white rounded-lg shadow-lg p-3 sm:p-6">
+            <p className="text-xs sm:text-sm text-gray-700 font-semibold mb-1 sm:mb-2">分潤紀錄數</p>
+            <p className="text-2xl sm:text-4xl font-bold text-purple-600">{commissions.length}</p>
           </div>
         </div>
 
@@ -293,7 +293,7 @@ export default function AdminPage() {
             <div className="flex overflow-x-auto">
               <button
                 onClick={() => setActiveTab('register')}
-                className={`px-8 py-4 font-semibold transition whitespace-nowrap ${
+                className={`px-4 sm:px-8 py-3 sm:py-4 text-sm sm:text-base font-semibold transition whitespace-nowrap ${
                   activeTab === 'register'
                     ? 'text-indigo-600 border-b-2 border-indigo-600'
                     : 'text-gray-600 hover:text-gray-900'
@@ -303,41 +303,41 @@ export default function AdminPage() {
               </button>
               <button
                 onClick={() => setActiveTab('users')}
-                className={`px-8 py-4 font-semibold transition whitespace-nowrap ${
+                className={`px-4 sm:px-8 py-3 sm:py-4 text-sm sm:text-base font-semibold transition whitespace-nowrap ${
                   activeTab === 'users'
                     ? 'text-indigo-600 border-b-2 border-indigo-600'
                     : 'text-gray-600 hover:text-gray-900'
                 }`}
               >
-                👥 會員管理 ({users.length})
+                👥 會員 ({users.length})
               </button>
               <button
                 onClick={() => setActiveTab('prizes')}
-                className={`px-8 py-4 font-semibold transition whitespace-nowrap ${
+                className={`px-4 sm:px-8 py-3 sm:py-4 text-sm sm:text-base font-semibold transition whitespace-nowrap ${
                   activeTab === 'prizes'
                     ? 'text-indigo-600 border-b-2 border-indigo-600'
                     : 'text-gray-600 hover:text-gray-900'
                 }`}
               >
-                🏆 中獎紀錄 ({prizes.length})
+                🏆 中獎 ({prizes.length})
               </button>
               <button
                 onClick={() => setActiveTab('commissions')}
-                className={`px-8 py-4 font-semibold transition whitespace-nowrap ${
+                className={`px-4 sm:px-8 py-3 sm:py-4 text-sm sm:text-base font-semibold transition whitespace-nowrap ${
                   activeTab === 'commissions'
                     ? 'text-indigo-600 border-b-2 border-indigo-600'
                     : 'text-gray-600 hover:text-gray-900'
                 }`}
               >
-                💰 分潤紀錄 ({commissions.length})
+                💰 分潤 ({commissions.length})
               </button>
             </div>
           </div>
 
-          <div className="p-6">
+          <div className="p-4 sm:p-6">
             {activeTab === 'register' && (
               <div className="max-w-2xl mx-auto">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">🎁 登記會員中獎</h2>
+                <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">🎁 登記會員中獎</h2>
                 <form onSubmit={handlePrizeSubmit} className="space-y-4">
                   <div>
                     <label className="block text-sm font-semibold text-gray-800 mb-2">
@@ -393,57 +393,57 @@ export default function AdminPage() {
 
             {activeTab === 'users' && (
               <div>
-                <div className="mb-4 flex justify-between items-center">
-                  <h2 className="text-xl font-bold text-gray-900">會員列表</h2>
+                <div className="mb-4 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3">
+                  <h2 className="text-lg sm:text-xl font-bold text-gray-900">會員列表</h2>
                   <button
                     onClick={() => {
                       setShowAddModal(true);
                       setAddMessage('');
                     }}
-                    className="bg-indigo-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-indigo-700 transition"
+                    className="bg-indigo-600 text-white px-4 sm:px-6 py-2 rounded-lg font-semibold hover:bg-indigo-700 transition text-sm sm:text-base"
                   >
                     ➕ 新增會員
                   </button>
                 </div>
-                <div className="overflow-x-auto">
-                  <table className="w-full">
+                <div className="overflow-x-auto -mx-4 sm:mx-0">
+                  <table className="w-full min-w-[640px]">
                     <thead>
                       <tr className="border-b border-gray-200">
-                        <th className="text-left py-3 px-4 font-semibold text-gray-900">ID</th>
-                        <th className="text-left py-3 px-4 font-semibold text-gray-900">會員名稱</th>
-                      <th className="text-left py-3 px-4 font-semibold text-gray-900">推薦人</th>
-                      <th className="text-left py-3 px-4 font-semibold text-gray-900">註冊時間</th>
-                      <th className="text-left py-3 px-4 font-semibold text-gray-900">操作</th>
+                        <th className="text-left py-2 sm:py-3 px-2 sm:px-4 font-semibold text-gray-900 text-xs sm:text-sm">ID</th>
+                        <th className="text-left py-2 sm:py-3 px-2 sm:px-4 font-semibold text-gray-900 text-xs sm:text-sm">會員名稱</th>
+                      <th className="text-left py-2 sm:py-3 px-2 sm:px-4 font-semibold text-gray-900 text-xs sm:text-sm">推薦人</th>
+                      <th className="text-left py-2 sm:py-3 px-2 sm:px-4 font-semibold text-gray-900 text-xs sm:text-sm">註冊時間</th>
+                      <th className="text-left py-2 sm:py-3 px-2 sm:px-4 font-semibold text-gray-900 text-xs sm:text-sm">操作</th>
                     </tr>
                   </thead>
                   <tbody>
                     {users.map((user) => (
                       <tr key={user.id} className="border-b border-gray-100 hover:bg-gray-50">
-                        <td className="py-3 px-4 font-semibold text-gray-900">{user.id}</td>
-                        <td className="py-3 px-4 font-semibold text-gray-900">{user.name}</td>
-                        <td className="py-3 px-4 text-gray-700 font-medium">
+                        <td className="py-2 sm:py-3 px-2 sm:px-4 font-semibold text-gray-900 text-xs sm:text-sm">{user.id}</td>
+                        <td className="py-2 sm:py-3 px-2 sm:px-4 font-semibold text-gray-900 text-xs sm:text-sm">{user.name}</td>
+                        <td className="py-2 sm:py-3 px-2 sm:px-4 text-gray-700 font-medium text-xs sm:text-sm">
                           {user.referrer?.name || '無'}
                         </td>
-                        <td className="py-3 px-4 text-sm text-gray-700">
+                        <td className="py-2 sm:py-3 px-2 sm:px-4 text-xs text-gray-700">
                           {new Date(user.created_at).toLocaleString('zh-TW')}
                         </td>
-                        <td className="py-3 px-4">
-                          <div className="flex gap-2">
+                        <td className="py-2 sm:py-3 px-2 sm:px-4">
+                          <div className="flex gap-1 sm:gap-2 flex-wrap">
                             <Link
                               href={`/dashboard/${user.id}`}
-                              className="text-indigo-600 hover:text-indigo-800 font-semibold"
+                              className="text-indigo-600 hover:text-indigo-800 font-semibold text-xs sm:text-sm"
                             >
                               查看
                             </Link>
                             <button
                               onClick={() => handleEditUser(user)}
-                              className="text-blue-600 hover:text-blue-800 font-semibold"
+                              className="text-blue-600 hover:text-blue-800 font-semibold text-xs sm:text-sm"
                             >
                               編輯
                             </button>
                             <button
                               onClick={() => handleDeleteUser(user.id, user.name)}
-                              className="text-red-600 hover:text-red-800 font-semibold"
+                              className="text-red-600 hover:text-red-800 font-semibold text-xs sm:text-sm"
                             >
                               刪除
                             </button>
@@ -458,34 +458,34 @@ export default function AdminPage() {
             )}
 
             {activeTab === 'prizes' && (
-              <div className="overflow-x-auto">
-                <table className="w-full">
+              <div className="overflow-x-auto -mx-4 sm:mx-0">
+                <table className="w-full min-w-[540px]">
                   <thead>
                     <tr className="border-b border-gray-200">
-                      <th className="text-left py-3 px-4 font-semibold text-gray-900">ID</th>
-                      <th className="text-left py-3 px-4 font-semibold text-gray-900">中獎者</th>
-                      <th className="text-left py-3 px-4 font-semibold text-gray-900">獎項名稱</th>
-                      <th className="text-left py-3 px-4 font-semibold text-gray-900">中獎時間</th>
+                      <th className="text-left py-2 sm:py-3 px-2 sm:px-4 font-semibold text-gray-900 text-xs sm:text-sm">ID</th>
+                      <th className="text-left py-2 sm:py-3 px-2 sm:px-4 font-semibold text-gray-900 text-xs sm:text-sm">中獎者</th>
+                      <th className="text-left py-2 sm:py-3 px-2 sm:px-4 font-semibold text-gray-900 text-xs sm:text-sm">獎項名稱</th>
+                      <th className="text-left py-2 sm:py-3 px-2 sm:px-4 font-semibold text-gray-900 text-xs sm:text-sm">中獎時間</th>
                     </tr>
                   </thead>
                   <tbody>
                     {prizes.map((prize) => (
                       <tr key={prize.id} className="border-b border-gray-100 hover:bg-gray-50">
-                        <td className="py-3 px-4 font-semibold text-gray-900">{prize.id}</td>
-                        <td className="py-3 px-4">
+                        <td className="py-2 sm:py-3 px-2 sm:px-4 font-semibold text-gray-900 text-xs sm:text-sm">{prize.id}</td>
+                        <td className="py-2 sm:py-3 px-2 sm:px-4">
                           <Link
                             href={`/dashboard/${prize.winner_id}`}
-                            className="text-indigo-600 hover:text-indigo-800 font-semibold"
+                            className="text-indigo-600 hover:text-indigo-800 font-semibold text-xs sm:text-sm"
                           >
                             {prize.winner?.name || `ID ${prize.winner_id}`}
                           </Link>
                         </td>
-                        <td className="py-3 px-4">
-                          <span className="inline-block px-3 py-1 bg-yellow-200 text-yellow-900 rounded-full font-semibold border border-yellow-400">
+                        <td className="py-2 sm:py-3 px-2 sm:px-4">
+                          <span className="inline-block px-2 sm:px-3 py-1 bg-yellow-200 text-yellow-900 rounded-full font-semibold border border-yellow-400 text-xs sm:text-sm">
                             🎁 {prize.prize_name}
                           </span>
                         </td>
-                        <td className="py-3 px-4 text-sm text-gray-700">
+                        <td className="py-2 sm:py-3 px-2 sm:px-4 text-xs text-gray-700">
                           {new Date(prize.created_at).toLocaleString('zh-TW')}
                         </td>
                       </tr>
@@ -496,51 +496,51 @@ export default function AdminPage() {
             )}
 
             {activeTab === 'commissions' && (
-              <div className="overflow-x-auto">
-                <table className="w-full">
+              <div className="overflow-x-auto -mx-4 sm:mx-0">
+                <table className="w-full min-w-[720px]">
                   <thead>
                     <tr className="border-b border-gray-200">
-                      <th className="text-left py-3 px-4 font-semibold text-gray-900">ID</th>
-                      <th className="text-left py-3 px-4 font-semibold text-gray-900">收入者</th>
-                      <th className="text-left py-3 px-4 font-semibold text-gray-900">中獎者</th>
-                      <th className="text-left py-3 px-4 font-semibold text-gray-900">獎項</th>
-                      <th className="text-left py-3 px-4 font-semibold text-gray-900">代數</th>
-                      <th className="text-left py-3 px-4 font-semibold text-gray-900">金額</th>
-                      <th className="text-left py-3 px-4 font-semibold text-gray-900">時間</th>
+                      <th className="text-left py-2 sm:py-3 px-2 sm:px-4 font-semibold text-gray-900 text-xs sm:text-sm">ID</th>
+                      <th className="text-left py-2 sm:py-3 px-2 sm:px-4 font-semibold text-gray-900 text-xs sm:text-sm">收入者</th>
+                      <th className="text-left py-2 sm:py-3 px-2 sm:px-4 font-semibold text-gray-900 text-xs sm:text-sm">中獎者</th>
+                      <th className="text-left py-2 sm:py-3 px-2 sm:px-4 font-semibold text-gray-900 text-xs sm:text-sm">獎項</th>
+                      <th className="text-left py-2 sm:py-3 px-2 sm:px-4 font-semibold text-gray-900 text-xs sm:text-sm">代數</th>
+                      <th className="text-left py-2 sm:py-3 px-2 sm:px-4 font-semibold text-gray-900 text-xs sm:text-sm">金額</th>
+                      <th className="text-left py-2 sm:py-3 px-2 sm:px-4 font-semibold text-gray-900 text-xs sm:text-sm">時間</th>
                     </tr>
                   </thead>
                   <tbody>
                     {commissions.map((comm) => (
                       <tr key={comm.id} className="border-b border-gray-100 hover:bg-gray-50">
-                        <td className="py-3 px-4 font-semibold text-gray-900">{comm.id}</td>
-                        <td className="py-3 px-4">
+                        <td className="py-2 sm:py-3 px-2 sm:px-4 font-semibold text-gray-900 text-xs sm:text-sm">{comm.id}</td>
+                        <td className="py-2 sm:py-3 px-2 sm:px-4">
                           <Link
                             href={`/dashboard/${comm.user_id}`}
-                            className="text-indigo-600 hover:text-indigo-800 font-semibold"
+                            className="text-indigo-600 hover:text-indigo-800 font-semibold text-xs sm:text-sm"
                           >
                             {comm.user?.name || `ID ${comm.user_id}`}
                           </Link>
                         </td>
-                        <td className="py-3 px-4">
+                        <td className="py-2 sm:py-3 px-2 sm:px-4">
                           <Link
                             href={`/dashboard/${comm.winner_id}`}
-                            className="text-blue-600 hover:text-blue-800 font-semibold"
+                            className="text-blue-600 hover:text-blue-800 font-semibold text-xs sm:text-sm"
                           >
                             {comm.winner?.name || `ID ${comm.winner_id}`}
                           </Link>
                         </td>
-                        <td className="py-3 px-4 text-gray-800 font-medium">
+                        <td className="py-2 sm:py-3 px-2 sm:px-4 text-gray-800 font-medium text-xs sm:text-sm">
                           {comm.prize?.prize_name || '-'}
                         </td>
-                        <td className="py-3 px-4">
-                          <span className={`px-3 py-1 rounded-full text-sm font-semibold ${levelColors[comm.level as keyof typeof levelColors]}`}>
+                        <td className="py-2 sm:py-3 px-2 sm:px-4">
+                          <span className={`px-2 sm:px-3 py-1 rounded-full text-xs font-semibold ${levelColors[comm.level as keyof typeof levelColors]}`}>
                             第 {comm.level} 代
                           </span>
                         </td>
-                        <td className="py-3 px-4 font-bold text-green-700">
+                        <td className="py-2 sm:py-3 px-2 sm:px-4 font-bold text-green-700 text-xs sm:text-sm">
                           NT$ {comm.amount.toLocaleString()}
                         </td>
-                        <td className="py-3 px-4 text-sm text-gray-700">
+                        <td className="py-2 sm:py-3 px-2 sm:px-4 text-xs text-gray-700">
                           {new Date(comm.created_at).toLocaleString('zh-TW')}
                         </td>
                       </tr>
@@ -555,9 +555,9 @@ export default function AdminPage() {
         {/* 編輯會員彈窗 */}
         {showEditModal && editingUser && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-            <div className="bg-white rounded-lg shadow-xl max-w-md w-full p-6">
-              <div className="flex justify-between items-center mb-4">
-                <h3 className="text-xl font-bold text-gray-900">編輯會員資料</h3>
+            <div className="bg-white rounded-lg shadow-xl max-w-md w-full p-4 sm:p-6 max-h-[90vh] overflow-y-auto">
+              <div className="flex justify-between items-center mb-3 sm:mb-4">
+                <h3 className="text-lg sm:text-xl font-bold text-gray-900">編輯會員資料</h3>
                 <button
                   onClick={() => {
                     setShowEditModal(false);
@@ -648,9 +648,9 @@ export default function AdminPage() {
         {/* 新增會員彈窗 */}
         {showAddModal && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-            <div className="bg-white rounded-lg shadow-xl max-w-md w-full p-6">
-              <div className="flex justify-between items-center mb-4">
-                <h3 className="text-xl font-bold text-gray-900">新增會員</h3>
+            <div className="bg-white rounded-lg shadow-xl max-w-md w-full p-4 sm:p-6 max-h-[90vh] overflow-y-auto">
+              <div className="flex justify-between items-center mb-3 sm:mb-4">
+                <h3 className="text-lg sm:text-xl font-bold text-gray-900">新增會員</h3>
                 <button
                   onClick={() => {
                     setShowAddModal(false);
